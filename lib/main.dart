@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:todolist/app/modules/home/home.view.dart';
 
-import 'app/core/bindings/application_bindings.dart';
-import 'app/routes/app_pages.dart';
+final navigatorKey = GlobalKey<NavigatorState>();
+void main() async {
+  await GetStorage.init();
+  runApp(ToDoApp());
+}
 
-void main() {
-  runApp(
-    GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Just do it',
-      initialBinding: ApplicationBindings(),
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-    ),
-  );
+class ToDoApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SimpleBuilder(builder: (_) {
+      return MaterialApp(
+        home: HomePage(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark(),
+      );
+    });
+  }
 }
