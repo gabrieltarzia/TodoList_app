@@ -11,7 +11,6 @@ class TodoController extends GetxController {
     List? storedList = GetStorage().read<List>(ConstHelper.taskBox);
 
     if (storedList != null) {
-      // taskList = storedList!.map((e) => Task.fromJson(e)).toList().obs;
       taskList = RxList(storedList.map((e) => Task.fromJson(e)).toList());
     }
     ever(taskList, (_) {

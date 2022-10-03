@@ -8,6 +8,7 @@ class TaskTile {
 
   taskTile(Task task) => ListTile(
         title: Text(task.title),
+        subtitle: Text(task.createdAt),
         tileColor: task.done ? Colors.green : Colors.grey.shade600,
         leading: _checkBox(task),
         trailing: _deleteButton(task),

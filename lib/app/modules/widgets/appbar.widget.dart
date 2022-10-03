@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:todolist/app/modules/Task/task.model.dart';
 import '../home/home.controller.dart';
 
@@ -27,6 +28,13 @@ _toggleComplete() => Row(
     );
 
 _nameField() => TextField(
+      onSubmitted: (value) {
+        if (taskNameController.text.isEmpty) {
+          Get.snackbar('Empty field', 'Insert a task name');
+        } else {
+          _createTask();
+        }
+      },
       controller: taskNameController,
       onChanged: (text) {
         taskName = text;
@@ -46,6 +54,7 @@ _addButton() => IconButton(
 _createTask() {
   final newTask = Task(
     title: taskName!,
+    createdAt: _getDate(),
     done: false,
   );
   homeController.todoController.taskList.add(newTask);
@@ -55,4 +64,11 @@ _createTask() {
 _clearField(TextEditingController controller, String? field) {
   controller.clear();
   field = null;
+}
+
+_getDate() {
+  final now = DateTime.now();
+  final formattedTime = DateFormat('dd/MM/yyyy - kk:mm').format(now);
+
+  return formattedTime;
 }
