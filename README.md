@@ -1,6 +1,6 @@
-# todolist
+# JustDoIt
 
-A new Flutter project.
+JustDoIt is a simple android todo list app for task management.
 
 ## Getting Started
 
