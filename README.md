@@ -8,5 +8,7 @@ This project was made using dart flutter and some packages from the pub.dev.
 
 ### Packages
 GetX: State management.
+
 GetStorage: Data persistence.
+
 Intl: Date formatter.
